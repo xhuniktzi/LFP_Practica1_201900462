@@ -4,6 +4,8 @@ from tkinter.filedialog import askopenfilename
 from curso import Curso
 from estudiante import Estudiante
 
+course: Curso = Curso(None)
+
 
 def parser_students(chars: list):
     str_students = ''
@@ -16,11 +18,10 @@ def parser_students(chars: list):
 
     for student in list_students:
         student_props = student.split(';')
-        student_name = student_props[0].replace('<', '').replace('"',
-                                                                 '').strip()
-        student_note = student_props[1].replace('>', '').strip()
+        nombre = student_props[0].replace('<', '').replace('"', '').strip()
+        nota = student_props[1].replace('>', '').strip()
 
-        students.append(Estudiante(student_name, student_note))
+        students.append(Estudiante(nombre, nota))
 
     return students
 
@@ -38,7 +39,7 @@ def parser(chars: list):
     course_name_parsed = course_name.join(course_name_chars).strip()
 
     # Crear objeto curso
-    course = Curso(course_name_parsed)
+    course.nombre_curso = course_name_parsed
 
     # Encontrar llave de apertura
     while char_pointer != '{':
@@ -54,7 +55,8 @@ def parser(chars: list):
         students_chars.append(chars.pop(0))
         char_pointer = chars[0]
 
-    parser_students(students_chars)
+    for student in parser_students(students_chars):
+        course.add_estudiante(student)
 
     chars.pop(0)
     char_pointer = chars[0]
@@ -62,6 +64,8 @@ def parser(chars: list):
     # Extraer Parametro
     param = ''
     param_parsed = param.join(chars).strip()
+
+    course.define_opt(param_parsed)
 
 
 def load_file():
@@ -93,7 +97,7 @@ if __name__ == '__main__':
         if opt == '1':
             load_file()
         elif opt == '2':
-            print('reporte')
+            course.print_curso()
         elif opt == '3':
             print('HTML')
         elif opt == '4':

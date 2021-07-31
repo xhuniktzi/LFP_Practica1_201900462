@@ -5,4 +5,4 @@ NOMBRE_DEL_CURSO = {
     < "Estudiante 04" ; 65 >,
     < "Estudiante 05" ; 99 >,
     < "Estudiante 06" ; 71 >
-} PARAMETRO
+} REP
