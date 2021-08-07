@@ -5,24 +5,21 @@ class Curso:
     def __init__(self, nombre_curso: str) -> None:
         self.nombre_curso: str = nombre_curso
         self.lista_estudiantes: list = []
-        self.option: str = None
+        self.list_options: list = []
 
     def add_estudiante(self, estudiante: Estudiante):
         self.lista_estudiantes.append(estudiante)
 
     def define_opt(self, option: str):
-        self.option = option
-
-        if option == 'ASC':
-            self.sort_asc()
-        if option == 'DESC':
-            self.sort_desc()
+        self.list_options.append(option)
 
     def sort_asc(self):
-        self.lista_estudiantes.sort(key=lambda e: e.nota)
+        return sorted(self.lista_estudiantes, key=lambda e: e.nota)
 
     def sort_desc(self):
-        self.lista_estudiantes.sort(reverse=True, key=lambda e: e.nota)
+        return sorted(self.lista_estudiantes,
+                      key=lambda e: e.nota,
+                      reverse=True)
 
     def promedio(self):
         suma = 0
@@ -63,15 +60,30 @@ class Curso:
             print('Nombre: {}, Nota: {}'.format(estudiante.nombre,
                                                 estudiante.nota))
 
-        if self.option == 'AVG':
-            print('Promedio: {}'.format(self.promedio()))
-        elif self.option == 'MIN':
-            print('Nota minima: {}'.format(self.get_min()))
-        elif self.option == 'MAX':
-            print('Nota maxima: {}'.format(self.get_max()))
-        elif self.option == 'APR':
-            print('Estudiantes aprobados: {}'.format(self.calc_aprobados()))
-        elif self.option == 'REP':
-            print('Estudiantes reprobados: {}'.format(self.calc_reprobados()))
+        print('---- ---- ---- ----')
+
+        for option in self.list_options:
+            if option == 'ASC':
+                print('Orden Ascendente:')
+                for estudiante in self.sort_asc():
+                    print('Nombre: {}, Nota: {}'.format(
+                        estudiante.nombre, estudiante.nota))
+            elif option == 'DESC':
+                print('Orden Descendente:')
+                for estudiante in self.sort_desc():
+                    print('Nombre: {}, Nota: {}'.format(
+                        estudiante.nombre, estudiante.nota))
+            elif option == 'AVG':
+                print('Promedio: {}'.format(self.promedio()))
+            elif option == 'MIN':
+                print('Nota minima: {}'.format(self.get_min()))
+            elif option == 'MAX':
+                print('Nota maxima: {}'.format(self.get_max()))
+            elif option == 'APR':
+                print('Estudiantes aprobados: {}'.format(
+                    self.calc_aprobados()))
+            elif option == 'REP':
+                print('Estudiantes reprobados: {}'.format(
+                    self.calc_reprobados()))
 
         print('---- ---- ---- ----')
