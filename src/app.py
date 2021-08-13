@@ -1,10 +1,13 @@
 from tkinter import Tk
 from tkinter.filedialog import askopenfilename
 
-from jinja2 import Environment, select_autoescape, PackageLoader
+from jinja2 import Environment, select_autoescape
+from jinja2.loaders import FileSystemLoader
 
 from curso import Curso
 from estudiante import Estudiante
+
+from os import startfile
 
 list_courses = []
 
@@ -97,11 +100,15 @@ def print_courses():
 
 
 def export_report():
-    env = Environment(loader=PackageLoader('app', 'templates'),
+    env = Environment(loader=FileSystemLoader('src/templates'),
                       autoescape=select_autoescape(['html']))
     template = env.get_template('reports.html')
 
-    # html_file = open
+    html_file = open('index.html', 'w+')
+    html_file.write(template.render())
+    html_file.close()
+
+    startfile('index.html')
 
 
 if __name__ == '__main__':
@@ -121,7 +128,7 @@ if __name__ == '__main__':
         elif opt == '2':
             print_courses()
         elif opt == '3':
-            print('HTML')
+            export_report()
         elif opt == '4':
             break
         else:

@@ -1,16 +1,20 @@
-CURSO_1 = { < "Estudiante 01" ; 65 >,   < "Estudiante 02" ; 89 >,
-    < "Estudiante 03" ; 36 >,
+CURSO_1 = {< "Estudiante 01" ; 65 >,   < "Estudiante 02" ; 89 >,
+   < "Estudiante 03" ; 36 >,
 
 
 
 
 
 
-    < "Estudiante 04" ; 65 >,   < "Estudiante 05" ; 99 >,    < "Estudiante 06" ; 71 >,
+   < "Estudiante 04" ; 65 >,   < "Estudiante 05" ; 99 >,    < "Estudiante 06" ; 71 >,
 
-    < "Estudiante 07" ; 35 >,   < "Estudiante 08" ; 49 >,
-    < "Estudiante 09" ; 38 >,
+   < "Estudiante 07" ; 35 >,   < "Estudiante 08" ; 49 >,
+   < "Estudiante 09" ; 38 >,
 
 
-    < "Estudiante 10" ; 72 >,   < "Estudiante 11" ; 85 >,    < "Estudiante 12" ; 24 >
-    } MIN, MAX, AVG, DESC, ASC, APR, REP
+   < "Estudiante 10" ; 72 >,   < "Estudiante 11" ; 85 >,    < "Estudiante 12" ; 24 >
+   } MIN, MAX, AVG, DESC, ASC, APR, REP
+
+
+
+

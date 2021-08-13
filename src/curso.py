@@ -50,6 +50,9 @@ class Curso:
 
         return count
 
+    def quantity(self):
+        return len(self.lista_estudiantes)
+
     def print_curso(self):
         print('---- ---- ---- ----')
         print('Curso: {}'.format(self.nombre_curso))
