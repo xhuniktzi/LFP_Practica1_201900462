@@ -38,13 +38,12 @@
           </thead>
           <tbody>
             {% for estudiante in course.lista_estudiantes %}
-
             <tr>
               {% if estudiante.nota >= 61 %}
-              <th scope="row">{{ estudiante.nombre }}</th>
+              <th class="table-primary" scope="row">{{ estudiante.nombre }}</th>
               <td class="table-primary">{{ estudiante.nota }}</td>
               {% else %}
-              <th scope="row">{{ estudiante.nombre }}</th>
+              <th class="table-danger" scope="row">{{ estudiante.nombre }}</th>
               <td class="table-danger">{{ estudiante.nota }}</td>
               {% endif %}
             </tr>
@@ -66,10 +65,10 @@
             {% for estudiante in course.sort_asc() %}
             <tr>
               {% if estudiante.nota >= 61 %}
-              <th scope="row">{{ estudiante.nombre }}</th>
+              <th class="table-primary" scope="row">{{ estudiante.nombre }}</th>
               <td class="table-primary">{{ estudiante.nota }}</td>
               {% else %}
-              <th scope="row">{{ estudiante.nombre }}</th>
+              <th class="table-danger" scope="row">{{ estudiante.nombre }}</th>
               <td class="table-danger">{{ estudiante.nota }}</td>
               {% endif %}
             </tr>
@@ -89,10 +88,10 @@
             {% for estudiante in course.sort_desc() %}
             <tr>
               {% if estudiante.nota >= 61 %}
-              <th scope="row">{{ estudiante.nombre }}</th>
+              <th class="table-primary" scope="row">{{ estudiante.nombre }}</th>
               <td class="table-primary">{{ estudiante.nota }}</td>
               {% else %}
-              <th scope="row">{{ estudiante.nombre }}</th>
+              <th class="table-danger" scope="row">{{ estudiante.nombre }}</th>
               <td class="table-danger">{{ estudiante.nota }}</td>
               {% endif %}
             </tr>
