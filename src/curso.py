@@ -1,4 +1,5 @@
 from estudiante import Estudiante
+from helpers import bubble_sort
 
 
 class Curso:
@@ -14,12 +15,10 @@ class Curso:
         self.list_options.append(option)
 
     def sort_asc(self):
-        return sorted(self.lista_estudiantes, key=lambda e: e.nota)
+        return bubble_sort(self.lista_estudiantes)
 
     def sort_desc(self):
-        return sorted(self.lista_estudiantes,
-                      key=lambda e: e.nota,
-                      reverse=True)
+        return bubble_sort(self.lista_estudiantes, reverse=True)
 
     def promedio(self):
         suma = 0

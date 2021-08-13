@@ -81,7 +81,7 @@ def load_file():
     try:
         Tk().withdraw()
         filename = askopenfilename()
-        input_file = open(filename, 'r+')
+        input_file = open(filename, 'r+', encoding='utf-8')
     except:
         print('Error al cargar el archivo')
     else:
