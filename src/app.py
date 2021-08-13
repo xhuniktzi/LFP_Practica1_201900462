@@ -104,8 +104,8 @@ def export_report():
                       autoescape=select_autoescape(['html']))
     template = env.get_template('reports.html')
 
-    html_file = open('index.html', 'w+')
-    html_file.write(template.render())
+    html_file = open('index.html', 'w+', encoding='utf-8')
+    html_file.write(template.render(list_courses=list_courses))
     html_file.close()
 
     startfile('index.html')

@@ -5,8 +5,134 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Reporte</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We"
+      crossorigin="anonymous"
+    />
   </head>
   <body>
-    <h1>Reporte</h1>
+    <header>
+      <h1 class="text-center">Reporte</h1>
+    </header>
+    <main class="container-fluid">
+      {% for course in list_courses %}
+      <section class="m-5">
+        <h2 class="text-center">Información del curso</h2>
+        <div class="row mt-5 mb-5 p-2">
+          <div class="fw-bold col-2 border">Nombre del curso:</div>
+          <div class="col-4 border">{{ course.nombre_curso }}</div>
+          <div class="fw-bold col-3 border">Cantidad de estudiantes:</div>
+          <div class="col-3 border">{{ course.quantity() }}</div>
+        </div>
+
+        <h2 class="text-center">Lista de estudiantes</h2>
+
+        <table class="table border">
+          <thead>
+            <tr>
+              <th scope="col">Nombre del estudiante</th>
+              <th scope="col">Nota obtenida</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for estudiante in course.lista_estudiantes %}
+
+            <tr>
+              {% if estudiante.nota >= 61 %}
+              <th scope="row">{{ estudiante.nombre }}</th>
+              <td class="table-primary">{{ estudiante.nota }}</td>
+              {% else %}
+              <th scope="row">{{ estudiante.nombre }}</th>
+              <td class="table-danger">{{ estudiante.nota }}</td>
+              {% endif %}
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+
+        <h2 class="text-center">Reportes según parámetros</h2>
+        {% for opt in course.list_options %} {% if opt == 'ASC' %}
+        <h3 class="text-center">Ordenar ascendente - ASC</h3>
+        <table class="table border">
+          <thead>
+            <tr>
+              <th scope="col">Nombre del estudiante</th>
+              <th scope="col">Nota obtenida</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for estudiante in course.sort_asc() %}
+            <tr>
+              {% if estudiante.nota >= 61 %}
+              <th scope="row">{{ estudiante.nombre }}</th>
+              <td class="table-primary">{{ estudiante.nota }}</td>
+              {% else %}
+              <th scope="row">{{ estudiante.nombre }}</th>
+              <td class="table-danger">{{ estudiante.nota }}</td>
+              {% endif %}
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+        {% endif %} {% if opt == 'DESC' %}
+        <h3 class="text-center">Ordenar descendente - DESC</h3>
+        <table class="table border">
+          <thead>
+            <tr>
+              <th scope="col">Nombre del estudiante</th>
+              <th scope="col">Nota obtenida</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for estudiante in course.sort_desc() %}
+            <tr>
+              {% if estudiante.nota >= 61 %}
+              <th scope="row">{{ estudiante.nombre }}</th>
+              <td class="table-primary">{{ estudiante.nota }}</td>
+              {% else %}
+              <th scope="row">{{ estudiante.nombre }}</th>
+              <td class="table-danger">{{ estudiante.nota }}</td>
+              {% endif %}
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+        {% endif %} {% if opt == 'AVG' %}
+        <div class="row mt-5 mb-5 p-2">
+          <div class="fw-bold col-3 border">Promedio:</div>
+          <div class="col-4 border">{{ course.promedio() }}</div>
+        </div>
+        {% endif %} {% if opt == 'MIN' %}
+        <div class="row mt-5 mb-5 p-2">
+          <div class="fw-bold col-3 border">Nota minima:</div>
+          <div class="col-4 border">{{ course.get_min() }}</div>
+        </div>
+        {% endif %} {% if opt == 'MAX' %}
+        <div class="row mt-5 mb-5 p-2">
+          <div class="fw-bold col-3 border">Nota maxima:</div>
+          <div class="col-4 border">{{ course.get_max() }}</div>
+        </div>
+        {% endif %} {% if opt == 'APR' %}
+        <div class="row mt-5 mb-5 p-2">
+          <div class="fw-bold col-3 border">Estudiantes aprobados:</div>
+          <div class="col-4 border">{{ course.calc_aprobados() }}</div>
+        </div>
+        {% endif %} {% if opt == 'REP' %}
+        <div class="row mt-5 mb-5 p-2">
+          <div class="fw-bold col-3 border">Estudiantes reprobados:</div>
+          <div class="col-4 border">{{ course.calc_reprobados() }}</div>
+        </div>
+        {% endif %}{% endfor %}
+      </section>
+      <hr />
+      {% endfor %}
+    </main>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj"
+      crossorigin="anonymous"
+    ></script>
   </body>
 </html>
